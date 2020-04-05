@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
 });
 
-router.post('/', async (req,res)=>{
+router.post('/post', async (req,res)=>{
 	const user = new User({
 		name: req.body.name,
 		age: req.body.age

@@ -1,1 +1,10 @@
 GET http://127.0.0.1:3000/user
+
+###
+
+POST http://127.0.0.1:3000/user/post
+Content-Type: application/json
+
+{
+    "id": "test2"
+}
