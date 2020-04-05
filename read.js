@@ -14,7 +14,7 @@ let db = mongoose.connection;
 Promise.resolve(() => db.once('open'))
   .then(() => {
     console.log('connection opened');
-    return user.User.find({});
+    return user.find({});
   })
   .then(users => {
     console.log('records fetched');
