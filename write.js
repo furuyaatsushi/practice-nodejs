@@ -25,7 +25,7 @@ let db = mongoose.connection;
 
 Promise.resolve(() => db.once('open'))
   .then(() => console.log('connection opened'))
-  .then(Promise.all(person.map(user => await insert(user))))
+  .then(Promise.all(person.map(user => insert(user))))
   .then(() => console.log('records inserted'))
   .then(() => db.close())
   .then(() => console.log('connection closed'));
