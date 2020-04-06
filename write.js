@@ -7,6 +7,7 @@ const user = require('./models/User');
 let tom = new user({ name: 'Tom', age: 20 }),
     mary = new user({ name: 'Mary', age: 27 });
 let person = [tom, mary];
+
 function insert(user) {
   return Promise.resolve(() => user.save())
     .then(() => {
