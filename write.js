@@ -8,7 +8,7 @@ let tom = new user({ name: 'Tom', age: 20 }),
     mary = new user({ name: 'Mary', age: 27 });
 let person = [tom, mary];
 
-function insert(user) {
+async function insert(user) {
   return Promise.resolve(() => user.save())
     .then(() => {
       console.log(user.name + ' is saved');
@@ -26,7 +26,7 @@ let db = mongoose.connection;
 
 Promise.resolve(() => db.once('open'))
   .then(() => console.log('connection opened'))
-  .then(Promise.all(person.map(user => insert(user))))
+  .then(await Promise.all(person.map(user => insert(user))))
   .then(() => console.log('records inserted'))
   .then(() => db.close())
   .then(() => console.log('connection closed'));
