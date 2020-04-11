@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const useRouter = requre('./routes/user')
+const userRouter = require('./routes/user')
 
 const User = require('./models/User'); 
 
@@ -13,7 +13,7 @@ const options = {
 };
 
 app.use(express.json());
-app.use(express.urlencorded({
+app.use(express.urlencoded({
   extended: true
 }));
 
@@ -24,7 +24,9 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect('mongodb://127.0.0.1/test_db2', options);
+app.use('/', userRouter);
+
+mongoose.connect('mongodb://127.0.0.1/UserCollection', options);
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
