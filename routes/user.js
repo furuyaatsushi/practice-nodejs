@@ -1,8 +1,7 @@
 const express = require('express');
+const read = require('../read');
+const write = require('../write');
 const router = express.Router();
-const User = require('../models/User');
-
-router.use(express.json());
 
 router.get('/', async (req, res) => {
 
@@ -12,15 +11,14 @@ router.get('/', async (req, res) => {
 
 });
 
-router.post('/post', async (req,res)=>{
-	const user = new User({
-		name: req.body.name,
-		age: req.body.age
-	});
-
-	const savedUser = await user.save();
-	res.json(savedUser);
-
+router.post('/login', async (req,res)=>{
+  const userId = req.body.userId;
+  let user = await read.readAsync(userId);
+  if(!user){
+    await write.writeAsync(userId);
+    user = await read.readAsync(userId);
+  }
+  return res.json(user);
 });
 
 module.exports = router;
