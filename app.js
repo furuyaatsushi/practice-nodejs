@@ -32,4 +32,4 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('Databsse connection successful'));
 app.listen(port,
-  () => console.log('Example app listening on port ${port}!'));
+  () => console.log(`Example app listening on port ${port}!`));

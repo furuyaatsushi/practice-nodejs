@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
 router.post('/login', async (req,res)=>{
   const userId = req.body.userId;
   let user = await read.readAsync(userId);
+  console.log(user);
   if(!user){
     await write.writeAsync(userId);
     user = await read.readAsync(userId);

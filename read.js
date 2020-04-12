@@ -1,3 +1,5 @@
+const User = require('./models/User'); 
+
 exports.readAsync = async(userId) => {
-  return userId.findOne({userid: userId}).exec();
+  return User.findOne({userid: userId}).exec();
 };
